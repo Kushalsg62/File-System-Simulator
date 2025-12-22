@@ -133,18 +133,3 @@ Designed for extensibility: add cd, search, or mv with ease
  
 ## 🤝 Contributing
 Feel free to fork, improve, or open issues. PRs are welcome!
-
-## 🪪 License
-This project is open-source under the MIT License.
-
-```yaml
----
-
-## 🧠 Optional Extras
-
-If you want to:
-- Publish this on GitHub, I can help write `.gitignore`, `.editorconfig`, and `.github/workflows`.
-- Bundle it as a `.jar` or run via Gradle/Maven.
-
-Want those too?
-```
