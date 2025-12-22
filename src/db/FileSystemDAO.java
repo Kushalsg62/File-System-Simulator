@@ -9,7 +9,7 @@ public class FileSystemDAO {
 
     // Create a file or folder
     public void create(FileSystemEntity entity) {
-        String sql = "INSERT INTO file_sys (name, type, parent_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO fs_entries (name, type, parent_id) VALUES (?, ?, ?)";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -36,7 +36,7 @@ public class FileSystemDAO {
 
     // Get a file/folder by ID
     public Optional<FileSystemEntity> getById(int id) {
-        String sql = "SELECT * FROM file_sys WHERE id = ?";
+        String sql = "SELECT * FROM fs_entries WHERE id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -55,7 +55,7 @@ public class FileSystemDAO {
     // Get children of a folder
     public List<FileSystemEntity> listChildren(int parentId) {
         List<FileSystemEntity> list = new ArrayList<>();
-        String sql = "SELECT * FROM file_sys WHERE parent_id = ?";
+        String sql = "SELECT * FROM fs_entries WHERE parent_id = ?";
 
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -75,7 +75,7 @@ public class FileSystemDAO {
 
     // Find by name under specific parent
     public Optional<FileSystemEntity> findByNameUnderParent(String name, Integer parentId) {
-        String sql = "SELECT * FROM file_sys WHERE name = ? AND parent_id = ?";
+        String sql = "SELECT * FROM fs_entries WHERE name = ? AND parent_id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -95,7 +95,7 @@ public class FileSystemDAO {
 
     // Rename a file/folder
     public void rename(int id, String newName) {
-        String sql = "UPDATE file_sys SET name = ? WHERE id = ?";
+        String sql = "UPDATE fs_entries SET name = ? WHERE id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -110,7 +110,7 @@ public class FileSystemDAO {
 
     // Move a file/folder to a new parent
     public void move(int id, Integer newParentId) {
-        String sql = "UPDATE file_sys SET parent_id = ? WHERE id = ?";
+        String sql = "UPDATE fs_entries SET parent_id = ? WHERE id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -130,7 +130,7 @@ public class FileSystemDAO {
 
     // Delete a file/folder by ID
     public void delete(int id) {
-        String sql = "DELETE FROM file_sys WHERE id = ?";
+        String sql = "DELETE FROM fs_entries WHERE id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -154,10 +154,10 @@ public class FileSystemDAO {
     }
 
     public FileSystemEntity getByNameAndParentId(String name, Integer parentId) {
-        if(name.equals("")){
+        if (name.equals("")) {
             return null;
         }
-        String sql = "SELECT * FROM file_sys WHERE name = ? AND parent_id = ?";
+        String sql = "SELECT * FROM fs_entries WHERE name = ? AND parent_id = ?";
         try (Connection conn = dbConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -178,5 +178,4 @@ public class FileSystemDAO {
         }
         return null;
     }
-
 }
