@@ -12,7 +12,7 @@ public class dbConn {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://localhost:3306/file_system");
         config.setUsername("root");
-        config.setPassword("Kushalsg@21");
+        config.setPassword("password");
 
         // Connection pool settings
         config.setMaximumPoolSize(10);
